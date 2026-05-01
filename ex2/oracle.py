@@ -1,9 +1,8 @@
 import os
-import sys
 from dotenv import load_dotenv
 
 
-def load_config():
+def load_config() -> None:
     try:
         load_dotenv()
         print("Configuration loaded:")
@@ -16,22 +15,22 @@ def load_config():
         print(f"Database: conectet to: {database}")
         if api:
             print("API Access: Authenticated")
-        else: 
+        else:
             print("API Access: denied")
         print(f"Log Level: {log}")
         if zion:
-            print(f"Zion Network: online")
-        else: 
+            print("Zion Network: online")
+        else:
             print("Zion Network: offline")
-    except:
-        print(f"Failed to load configuration")
+    except Exception:
+        print("Failed to load configuration")
 
 
-def security():
+def security_check() -> None:
     print("Enviroment security check:")
     with open(__file__, "r") as f:
         code = f.read()
-    if "API_KEY=" in code or "SECRECT" in code: 
+    if "API_KEY=" in code or "SECRECT" in code:
         print("[OK] No hardcoded secrets detected")
     else:
         print("[WARNING] Possible hardcoded secrets")
@@ -40,7 +39,7 @@ def security():
         print("[OK] .env file properly configured")
     else:
         print("[WARNING] No .env file found")
-    
+
     if os.getenv("MATRIX_MODE") == "production":
         print("[OK] Running in production mode")
     elif os.getenv("MATRIX_MODE") == "development":
@@ -53,7 +52,7 @@ def main() -> None:
     print("ORACLE STATUS: Reading the Marix...\n")
     load_config()
     print()
-    security()
+    security_check()
     print()
     print("The Oracle sees all configurations.")
 

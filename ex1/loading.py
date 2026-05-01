@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt # type: ignore
+import matplotlib.pyplot as plt  # type: ignore
 import importlib.metadata as md
 import numpy as np
 import sys
@@ -6,7 +6,7 @@ import sys
 
 def matrix_gen() -> None:
     try:
-        import pandas as pd # type: ignore
+        import pandas as pd  # type: ignore
     except ModuleNotFoundError:
         pd = None
     matrix = np.random.randn(1000, 3)
@@ -23,7 +23,8 @@ def matrix_gen() -> None:
     plt.savefig("matrix_analysis.png", dpi=200)
 
 
-def check_dependencies(packages: list[str]) -> tuple[dict[str, str], list[str]] :
+def check_dependencies(packages:
+                       list[str]) -> tuple[dict[str, str], list[str]]:
     there = {}
     missing = []
 
